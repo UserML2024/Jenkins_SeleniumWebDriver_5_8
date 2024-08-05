@@ -48,15 +48,16 @@ pipeline {
                 
             }   
         }
-        post {
-            always {
-                archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
-                step([
-                    $class: 'MSTestPublisher',
-                    TestResultsFile: '**/TestResults/*.trx'
+    
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: '**/TestResults/*.trx', allowEmptyArchive: true
+            step([
+                $class: 'MSTestPublisher',
+                TestResultsFile: '**/TestResults/*.trx'
                 ])
             }
         }
-    }
 
 }
